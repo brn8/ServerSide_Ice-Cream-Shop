@@ -29,7 +29,7 @@ app.get("/api/flavors/:id", async (req, res, next) => {
 app.post("/api/flavors", async (req, res, next) => {
   try {
     const SQL = `
-    INSERT INTO flavors(name,is_favorite) VALUES($1,$2)`;
+    INSERT INTO flavors(name,is_favorite) VALUES($1,$2)  RETURNING *`;
     const response = await client.query(SQL, [
       req.body.name,
       req.body.is_favorite,
